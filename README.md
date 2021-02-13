@@ -1,5 +1,8 @@
 # CodeIgniter 4 Application Starter
 
+## _This is my experimental on Codeigniter4 learning process_
+It's my Learning process of Codeigniter4! Please wait until I released new one better and optimized.
+
 ## What is CodeIgniter?
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
@@ -62,3 +65,6 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 - [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
 - xml (enabled by default - don't turn it off)
 "# ci-tokonline" 
+
+## Run this Project
+`php spark migrate` to migrate database table
