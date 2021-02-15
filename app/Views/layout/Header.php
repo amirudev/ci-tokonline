@@ -12,19 +12,13 @@
   </head>
   <body>
     <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand ms-5" href="#">Navbar</a>
+      <a class="navbar-brand ms-5" href="#">CI Toko Online</a>
       <ul class="nav justify-content-end me-5">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Active</a>
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="<?= base_url('Auth/register') ?>">Register</a>
         </li>
       </ul>
     </nav>
