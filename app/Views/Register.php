@@ -25,7 +25,7 @@
     ];
 
     $session = session();
-    $errors = $_SESSION['errors'];
+    $errors = $session->getFlashdata('errors');
     ?>
     <?php if($errors != NULL){ ?>
         <div class="alert alert-danger" role="alert">
@@ -36,7 +36,6 @@
                 echo "<p>$error</p>";
             }
             ?>
-            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
         </div>
     <?php } ?>
     <?= form_open(); ?>

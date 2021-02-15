@@ -25,7 +25,6 @@ class Auth extends BaseController
 				$user->created_by = 0;
 				$user->created_date = date("Y-m-d H:i:s");
 				$userModel->save($user);
-				echo 'Debug 1';
 				return view('login');
 			}
 			$this->session->setFlashdata('errors', $errors);
@@ -35,6 +34,36 @@ class Auth extends BaseController
 
 	public function login()
 	{
+		helper('form');
+		if($this->request->getPost()){
+			$data = $this->request->getPost();
+			$userModel = new \App\Models\UserModel();
+			$username = $this->request->getPost('Username');
+			$password = $this->request->getPost('Password');
+			$user = $userModel->where('Username', $username)
+			->first();
+			
+			if($user){
+				$salt = $user->salt;
+				if($user->password !== md5($salt.$password)){
+					$this->session->setFlashdata('errors', ['Username atau Password tidak ditemukan!']);
+					
+				} else {
+					$sessData = [
+						'username' => $user->username,
+						'id' => $user->password,
+						'isLoggedIn' => TRUE
+					];
+
+					$this->session->set($sessData);
+					return redirect()->to(base_url('home'));
+					
+				}
+			} else {
+				$this->session->setFlashdata('errors', ['Username atau Password tidak ditemukan!']);
+			}
+		}
+		
 		return view('login');
 	}
 

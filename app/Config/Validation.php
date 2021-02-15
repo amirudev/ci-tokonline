@@ -66,24 +66,4 @@ class Validation
 			'matches' => 'Repeat Password harus sama dengan kolom Password',
 		]
 	];
-
-	public $login = [
-		'username' => [
-			'rules' => 'required|min_length[5]'
-		],
-		'password' => [
-			'rules' => 'required|min_length[8]'
-		]
-	];
-
-	public $login_errors = [
-		'username' => [
-			'required' => '{field} Wajib diisi',
-			'min_length' => '{field} Minimal 5 Karakter',
-		],
-		'password' => [
-			'required' => '{field} Wajib diisi',
-			'min_length' => '{field} Minimal 8 Karakter',
-		]
-	];
 }

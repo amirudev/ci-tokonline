@@ -20,5 +20,8 @@
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url('Auth/register') ?>">Register</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('Auth/login') ?>">Login</a>
+        </li>
       </ul>
     </nav>
