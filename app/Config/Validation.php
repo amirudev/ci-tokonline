@@ -66,4 +66,37 @@ class Validation
 			'matches' => 'Repeat Password harus sama dengan kolom Password',
 		]
 	];
+
+	public $barang = [
+		'nama' => [
+			'rules' => 'required|min_length[3]'
+		],
+		'harga' => [
+			'rules' => 'required|is_natural'
+		],
+		'stok' => [
+			'rules' => 'required|is_natural'
+		],
+		'gambar' => [
+			'rules' => 'uploaded[gambar]'
+		]
+	];
+
+	public $barang_errors = [
+		'nama' => [
+			'required' => '{field} wajib diisi',
+			'min_length' => '{field} harus lebih dari 3 Karakter',
+		],
+		'harga' => [
+			'required' => '{field} wajib diisi',
+			'is_natural' => '{field} harus lebih dari Rp0',
+		],
+		'stok' => [
+			'required' => '{field} wajib diisi',
+			'is_natural' => '{field} harus lebih dari 0',
+		],
+		'gambar' => [
+			'uploaded' => '{field} wajib diunggah',
+		]
+	];
 }

@@ -2,5 +2,9 @@
 <div class="container my-5">
     <h1>Hello World!</h1>
     <p>Selamat datang, <?= session()->get('username'); ?></p>
+    <a href="<?= base_url('Barang/create') ?>"><button class="btn btn-success">Create</button></a>
+    <a href="<?= base_url('Barang/index') ?>"><button class="btn btn-warning">Read</button></a>
+    <a href="<?= base_url('Barang/update') ?>"><button class="btn btn-primary">Update</button></a>
+    <a href="<?= base_url('Barang/delete') ?>"><button class="btn btn-danger">Delete</button></a>
 </div>
 <?= $this->include('layout/footer'); ?>
