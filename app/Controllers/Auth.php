@@ -20,10 +20,11 @@ class Auth extends BaseController
 			if(!$errors){
 				$userModel = new \App\Models\UserModel();
 				$user = new \App\Entities\User();
-				$user->username = $this->request->getPost('username');
-				$user->password = $this->request->getPost('password');
+				$user->username = $this->request->getPost('Username');
+				$user->password = $this->request->getPost('Password');
 				$user->created_by = 0;
 				$user->created_date = date("Y-m-d H:i:s");
+				$user->role = 0; // User
 				$userModel->save($user);
 				return view('login');
 			}
@@ -51,7 +52,8 @@ class Auth extends BaseController
 				} else {
 					$sessData = [
 						'username' => $user->username,
-						'id' => $user->password,
+						'id' => $user->id,
+						'role' => $user->role,
 						'isLoggedIn' => TRUE
 					];
 

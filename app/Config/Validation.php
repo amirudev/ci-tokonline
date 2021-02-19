@@ -48,7 +48,7 @@ class Validation
 			'rules' => 'required|min_length[8]'
 		],
 		'repeatPassword' => [
-			'rules' => 'required|matches[password]'
+			'rules' => 'required|matches[Password]'
 		]
 	];
 
@@ -98,5 +98,26 @@ class Validation
 		'gambar' => [
 			'uploaded' => '{field} wajib diunggah',
 		]
+	];
+
+	public $transaksi = [
+		'id_pembeli' => [
+			'rules' => 'required'
+		],
+		'id_barang' => [
+			'rules' => 'required'
+		],
+		'jumlah' => [
+			'rules' => 'required'
+		],
+		'total_harga' => [
+			'rules' => 'required'
+		],
+		'alamat' => [
+			'rules' => 'required'
+		],
+		'ongkir' => [
+			'rules' => 'required'
+		],
 	];
 }
