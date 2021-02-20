@@ -9,6 +9,7 @@ class Transaksi extends BaseController
     {
         $this->validation = \Config\Services::validation();
         $this->session = session();
+        $this->email = \Config\Services::email();
     }
 
     public function view()
@@ -65,10 +66,38 @@ class Transaksi extends BaseController
 
         $pdf->AddPage();
 
-        // Print text using writeHTMLCell()
         $pdf->writeHTML($html, true, false, true, false, '');
-        $this->response->setContentType('application/pdf');
+        // $this->response->setContentType('application/pdf');
 
-        $pdf->Output("INVOICE PRINT TRANSAKSI $barang->id", 'I');
+        $fileName = "INVOICE_PRINT_TRANSAKSI_$transaksi->id.pdf";
+
+        $pdf->Output($_SERVER['DOCUMENT_ROOT'] . "uploads/$fileName", 'F');
+
+        $subject = "Invoice TokoIgniter Transaksi $transaksi->id";
+        $message = "<h1>Halo, $user->username</h1>.<br>Berikut adalah invoice pembelian $barang->nama dengan ID Transaksi $transaksi->id.<br>Terima kasih sudah belanja di TokoIgniter!<br>Attachment invoice dilampirkan dibawah, Have a nice day!";
+        $attachment = $_SERVER['DOCUMENT_ROOT'] . "uploads/$fileName";
+
+        $this->sendMail($subject, $message, $attachment);
+
+        return redirect()->to(base_url('transaksi/index'));
+    }
+
+    private function sendMail($subject, $message, $attachment)
+    {
+        ini_set('max_execution_time', 360); 
+        ini_set('memory_limit','2048M');
+        $this->email->setFrom('aabalabal65@gmail.com', 'Admin TokoIgniter');
+        $this->email->setTo('wahyu77889966@gmail.com');
+
+        $this->email->setSubject($subject);
+        $this->email->setMessage($message);
+        $this->email->attach($attachment);
+
+        if(!$this->email->send()){
+            $this->session->setFlashdata('message', ['status' => 'danger', 'message' => 'E-mail gagal dikirimkan']);
+        }else{
+            unlink($attachment);
+            $this->session->setFlashdata('message', ['status' => 'success', 'message' => 'E-mail berhasil dikirimkan!']);
+        }
     }
 }

@@ -1,5 +1,14 @@
 <?= $this->include('layout/header') ?>
 <div class="container my-5">
+    <?php 
+    $session = session();
+    $message = $session->getFlashdata('message');
+    if($message){ ?>
+        <div class="alert alert-<?= $message['status'] ?>" role="alert">
+            <?= $message['message'] ?>
+        </div>
+    <?php }
+    ?>
     <h3>Transaksi</h3>
     <table class="table w-100 text-center">
         <thead>
