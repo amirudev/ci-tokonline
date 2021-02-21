@@ -120,4 +120,10 @@ class Validation
 			'rules' => 'required'
 		],
 	];
+
+	public $komentar = [
+		'komentar' => [
+			'rules' => 'required'
+		]
+	];
 }

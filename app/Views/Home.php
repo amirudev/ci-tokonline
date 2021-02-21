@@ -8,5 +8,7 @@
     <a href="<?= base_url('Barang/update') ?>"><button class="btn btn-primary">Update</button></a>
     <a href="<?= base_url('Barang/delete') ?>"><button class="btn btn-danger">Delete</button></a>
     <?php endif; ?>
+    <a href="<?= base_url('Etalase') ?>"><button class="btn btn-link">Etalase</button></a>
+    <a href="<?= base_url('Transaksi') ?>"><button class="btn btn-link">Transaksi</button></a>
 </div>
 <?= $this->include('layout/footer'); ?>

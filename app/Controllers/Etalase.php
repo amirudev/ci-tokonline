@@ -13,6 +13,7 @@ class Etalase extends Controller
         helper('form');
         $this->validation = \Config\Services::validation();
         $this->session = session();
+        $pager = \Config\Services::pager();
     }
 
     public function index()
@@ -57,14 +58,21 @@ class Etalase extends Controller
                 $segment = ['transaksi', 'view', $id];
                 return redirect()->to(site_url($segment));
             }
-
-            print_r($errors);
-            exit();
         }
+
+        $komentarModel = new \App\Models\KomentarModel();
+        $komentars = $komentarModel->where('id_barang', $id)->orderBy('id', 'DESC');
+
+        $data = [
+            'komentars' => $komentars->paginate(3),
+            'pager' => $komentars->pager
+        ];
+
         $province = $this->rajaongkir('province');
         return view('etalase/beli', [
             'barang' => $barang,
-            'provinsis' => json_decode($province)->rajaongkir->results
+            'provinsis' => json_decode($province)->rajaongkir->results,
+            'data' => $data,
         ]);
     }
 

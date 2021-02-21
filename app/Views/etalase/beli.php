@@ -4,11 +4,33 @@
         <div class="col-6 text-center py-4">
             <h3 class="my-3"><?= $barang->nama ?></h3>
             <img src="<?= base_url("uploads/$barang->gambar") ?>" alt="" style="max-height: 400px">
+            <div class="komentar my-5 text-start">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h5 class="text-start">Komentar</h5>
+                        <a href="/komentar/tambah/<?= $barang->id ?>" class="text-end">Tambah Komentar</a>
+                    </div>
+                    <div class="card-body">
+                        <?php foreach($data['komentars'] as $index=>$komentar): ?>
+                            <div class="card mb-2">
+                            <div class="card-body">
+                                <?php $userModel = new \App\Models\UserModel(); 
+                                $username = $userModel->find($komentar->id_user)->username; ?>
+                                <h6><?= $username ?></h6>
+                                <hr>
+                                <span><?= $komentar->komentar ?></span>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                        <?= $data['pager']->links('default', 'full_pager'); ?>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-6">
-            <h3>Pengiriman</h3>
-            <div class="form-group">
-                <label for="provinsi">Provinsi</label>
+            <h3 class="mt-4">Pengiriman</h3>
+            <div class="form-group my-3">
+                <label class="my-2" for="provinsi">Provinsi</label>
                 <select id="provinsi" class="form-control">
                     <option>Select Provinsi</option>
                     <?php foreach($provinsis as $provinsi): ?>
@@ -16,14 +38,14 @@
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="kabupaten">Kabupaten / Kota</label>
+            <div class="form-group my-3">
+                <label class="my-2" for="kabupaten">Kabupaten / Kota</label>
                 <select id="kabupaten" class="form-control">
                     <option>Select Kabupaten / Kota</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="service">Pilih Service</label>
+            <div class="form-group my-3">
+                <label class="my-2" for="service">Pilih Service</label>
                 <select id="service" class="form-control">
                     <option>Select Service</option>
                 </select>
@@ -87,24 +109,24 @@
                 ];
             ?>
             <?= form_open(); ?>
-            <div class="form-group">
+            <div class="form-group my-3">
                 <?= form_input($id_pembeli) ?>
                 <?= form_input($id_barang) ?>
                 <?= form_input($harga_barang) ?>
             </div>
-            <div class="form-group">
+            <div class="form-group my-3">
                 <?= form_label('Jumlah', 'jumlah') ?>
                 <?= form_input($jumlah) ?>
             </div>
-            <div class="form-group">
+            <div class="form-group my-3">
                 <?= form_label('Ongkos Kirim', 'ongkir') ?>
                 <?= form_input($ongkir) ?>
             </div>
-            <div class="form-group">
+            <div class="form-group my-3">
                 <?= form_label('Total Harga', 'total_harga') ?>
                 <?= form_input($total_harga) ?>
             </div>
-            <div class="form-group">
+            <div class="form-group my-3">
                 <?= form_label('Alamat Lengkap', 'alamat') ?>
                 <?= form_input($alamat) ?>
             </div>

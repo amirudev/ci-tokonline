@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php  foreach($data['users'] as $index=>$user): ?>
+        <?php foreach($data['users'] as $index=>$user): ?>
             <tr>
                 <td><?= $user->username ?></td>
                 <td><?php if($user->role == 0){ echo 'User'; }else{ echo 'Admin'; } ?></td>
